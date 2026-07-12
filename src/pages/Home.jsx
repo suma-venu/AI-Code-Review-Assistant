@@ -1,10 +1,10 @@
-import Navbar from "../components/Navbar";
+
 import "../styles/Home.css";
 
 function Home() {
   return (
     <>
-      <Navbar />
+    
 
       <div className="hero">
 
