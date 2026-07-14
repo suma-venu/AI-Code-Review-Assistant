@@ -12,8 +12,15 @@ const [reviewResult, setReviewResult] = useState("");
     alert("Please enter some code first!");
     return;
   }
-
-     const response = await fetch("http://localhost:5000/review");
+const response = await fetch("http://localhost:5000/review", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({
+    code: code,
+  }),
+});
 
   const data = await response.text();
 

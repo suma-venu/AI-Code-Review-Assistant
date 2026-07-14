@@ -7,14 +7,20 @@ const cors = require("cors");
 const app = express();
 
 app.use(cors());
+app.use(express.json());
 const PORT = 5000;
 
 app.get("/", (req, res) => {
   res.send("Backend is running successfully!");
 });
 
-app.get("/review", (req, res) => {
-  res.send("AI Review API is working!");
+app.post("/review", (req, res) => {
+
+  console.log("Received Code:");
+  console.log(req.body.code);
+
+  res.send("Code received successfully!");
+
 });
 
 app.listen(PORT, () => {
