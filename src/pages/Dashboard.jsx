@@ -6,20 +6,18 @@ import "../styles/Dashboard.css";
 function Dashboard() {
 const [code, setCode] = useState("");
 const [reviewResult, setReviewResult] = useState("");
- const handleReview = () => {
+ const handleReview = async () => {
 
   if (code.trim() === "") {
     alert("Please enter some code first!");
     return;
   }
 
- setReviewResult(`
-✅ Code received successfully!
+     const response = await fetch("http://localhost:5000/review");
 
-📄 Total characters: ${code.length}
+  const data = await response.text();
 
-🤖 AI review will be displayed here after backend integration.
-`);
+  setReviewResult(data);
 
 };
 
