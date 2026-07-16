@@ -24,7 +24,10 @@ const response = await fetch("http://localhost:5000/review", {
 
   const data = await response.text();
 
-  setReviewResult(data);
+console.log("Response received:");
+console.log(data);
+
+setReviewResult(data);
 
 };
 

@@ -3,6 +3,8 @@
 const express = require("express");
 
 const cors = require("cors");
+const fs = require("fs");
+const { exec } = require("child_process");
 
 const app = express();
 
@@ -16,10 +18,34 @@ app.get("/", (req, res) => {
 
 app.post("/review", (req, res) => {
 
-  console.log("Received Code:");
-  console.log(req.body.code);
+ const code = req.body.code;
 
-  res.send("Code received successfully!");
+// Create a temporary JavaScript file
+fs.writeFileSync("temp.js", code);
+console.log("Running ESLint...");
+
+exec("npx eslint temp.js", (error, stdout, stderr) => {
+
+  console.log("Error:", error);
+  console.log("STDOUT:", stdout);
+  console.log("STDERR:", stderr);
+
+  // If ESLint produced output, send it to React
+  if (stdout) {
+    res.send(stdout);
+    return;
+  }
+
+  // If there is only stderr, send it
+  if (stderr) {
+    res.send(stderr);
+    return;
+  }
+
+  // If nothing was found
+  res.send("✅ No issues found!");
+
+});
 
 });
 
