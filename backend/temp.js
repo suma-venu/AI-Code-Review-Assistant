@@ -1,1 +1,7 @@
-let a = 10;
+let age = 25;
+
+function greet() {
+  console.log("Hello");
+}
+
+greet();
