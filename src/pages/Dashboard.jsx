@@ -31,7 +31,7 @@ const resultsRef = useRef(null);
       return;
     }
 
-    const response = await fetch("http://localhost:5000/review", {
+    const response = await fetch( "https://ai-code-review-assistant-mh95.onrender.com/review", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
